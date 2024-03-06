@@ -1,7 +1,6 @@
 import { Hono } from "hono";
 
 const router = new Hono();
-export default router;
 
 router
   .post("/", (c) => {
@@ -16,3 +15,5 @@ router
   .get("/:id", (c) => {
     return c.text("getBlog");
   });
+
+export default router;

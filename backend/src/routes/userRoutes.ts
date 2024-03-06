@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client/edge";
 import { Hono } from "hono";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { signupInput } from "@mcace007/medium-common";
@@ -36,7 +36,7 @@ router.post("/signup", async (c) => {
   try {
     const user = await prisma.user.create({
       data: {
-        email: body.username,
+        email: body.email,
         password: body.password,
         name: body.name,
       },

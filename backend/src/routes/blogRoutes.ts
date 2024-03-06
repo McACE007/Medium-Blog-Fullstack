@@ -39,6 +39,7 @@ router.use("/*", async (c, next) => {
   } catch (e) {
     c.status(403);
     return c.json({
+      status: "error",
       message: responseMessage.notLoggedIn403,
     });
   }

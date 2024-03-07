@@ -19,10 +19,11 @@ export default function Auth({ type }: { type: "signin" | "signup" }) {
         `${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`,
         inputs,
       );
-      const jwt = response.data;
+      const jwt = response.data.data.jwt;
       localStorage.setItem("token", jwt);
       navigate("/blogs");
     } catch (e) {
+      console.log(e);
       alert("Error while signing up");
       // alert the user here that the request failed
     }
@@ -83,7 +84,7 @@ export default function Auth({ type }: { type: "signin" | "signup" }) {
               }}
             />
             <button
-              onChange={sendRequest}
+              onClick={sendRequest}
               type="button"
               className="text-white mt-8 bg-gray-800 hover:bg-gray-900 w-full focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
             >

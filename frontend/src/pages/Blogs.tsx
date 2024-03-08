@@ -1,15 +1,17 @@
 import AppBar from "../components/AppBar";
 import BlogCard from "../components/BlogCard";
+import { BlogSkeleton } from "../components/BlogSkeleton";
 import { useBlogs } from "../hooks/useBlogs";
 
 export default function Blogs() {
   const { loading, blogs } = useBlogs();
+
   return (
-    <div>
-      <AppBar />
-      <div className="flex justify-center">
-        <div className="">
-          {blogs.map((blog) => (
+    <div className="flex justify-center">
+      <div className="">
+        {loading && <BlogSkeleton />}
+        {!loading &&
+          blogs.map((blog) => (
             <BlogCard
               authorName={blog.author.name || "McACE007"}
               title={blog.title}
@@ -19,7 +21,6 @@ export default function Blogs() {
               id={blog.id}
             />
           ))}
-        </div>
       </div>
     </div>
   );
